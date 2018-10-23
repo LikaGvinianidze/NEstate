@@ -1,0 +1,357 @@
+<% let statuses = {}; let curArr = []; %>
+
+<% if (state.state_type.name === 'ბინა' || state.state_type.name === 'კერძო სახლი') { %>
+  <% statuses = status.flat %>
+<% } else if (state.state_type.name === 'კომერცული ფართი') { %>
+  <% statuses = status.comercial %>
+<% } else if (state.state_type.name === 'მიწის ნაკვეთი') { %>
+  <% statuses = status.land %>
+<% } %>
+
+<!DOCTYPE html>
+<html lang="en">
+<!-- begin::Head -->
+
+<% include ../shared/head.ejs %>
+  <!-- end::Head -->
+  <!-- end::Body -->
+
+  <body class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--fixed m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default">
+    <!-- begin:: Page -->
+    <div class="m-grid m-grid--hor m-grid--root m-page">
+      <!-- BEGIN: Header -->
+      <% include ../shared/header.ejs %>
+        <!-- END: Header -->
+        <!-- begin::Body -->
+        <div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body">
+          <div class="m-grid__item m-grid__item--fluid m-wrapper">
+            <div class="row">
+              <div class="container-fluid">
+              </div>
+            </div>
+            <div class="m-content">
+              <div class="m-portlet">
+                <div class="m-portlet__head">
+                  <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title">
+                      <span class="m-portlet__head-icon m--hide">
+                        <i class="la la-gear"></i>
+                      </span>
+                      <h3 class="m-portlet__head-text">
+                        უძრავი ქონების რედაქტირება
+                      </h3>
+                      <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+                        <li class="m-nav__item m-nav__item--home">
+                        </li>
+                        <li class="m-nav__item">
+                          <a href="/states" class="m-nav__link">
+                          <span class="m-nav__link-text">
+                              <i class="la la-angle-double-left"></i>
+                            დაბრუნება
+                          </span>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <!--begin::Form-->
+                <form id="update_state_form" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator" >
+                  <!-- <div id="err_msg" class="form-group m-form__group row"></div> -->
+                  <div class="m-portlet__body">
+
+                    <label class="col-lg-12 title-features" for="st_type">
+                      <span>განცხადების ტიპი</span>
+                    </label>
+                    <div id="st_type" class="form-group m-form__group row">
+                      <label class="col-lg-2 col-form-label">
+                        უძრავი ქონების ტიპი*
+                      </label>
+                      <div class="col-lg-2">
+                        <select id="edit_state_type" name="state_type" class="selectpicker bootstrap-select form-control m-bootstrap-select">
+                          <% stateTypes.forEach(type => { %>
+                          <option
+                            <% if (type.id === state.state_type.id) { %> selected <% } %>
+                            value="<%=type.id%>"
+                            reference="">
+                            <%=type.name%></option>
+                          <% }); %>
+                        </select>
+                      </div>
+                      <div <% if (state.state_type.name !== 'ბინა') { %> style="display: none" <% } %> id="edit_flatType_div" class="col-lg-2">
+                        <select id="edit_flat_type" name="flat_type" class="selectpicker bootstrap-select form-control m-bootstrap-select">
+                          <% for (const key in flatType) { %>
+                          <option
+                            <% if (key === state.flat_type) { %> selected <% } %>
+                            value="<%=key%>">
+                            <%=flatType[key]%></option>
+                          <% } %>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group m-form__group row">
+                      <label class="col-lg-2 col-form-label">
+                        გარიგების ფორმა*
+                      </label>
+                      <div class="col-lg-2">
+                        <select id="edit_transaction_type" name="transaction_type" class="selectpicker bootstrap-select form-control m-bootstrap-select">
+                          <% transactionTypes.forEach(type => { %>
+                          <% if (state.state_type.name === 'მიწის ნაკვეთი' && (type.name === 'ქირავდება' || type.name === 'ქირავდება დღიურად')) return; %>
+                          <option
+                            <% if (type.id === state.transaction_type.id) { %> selected <% } %>
+                            value="<%=type.id%>">
+                            <%=type.name%> </option>
+                          <% }); %>
+                        </select>
+                      </div>
+                      <div id="edit_status_div" class="col-lg-2">
+                        <select id="edit_status" name="status" class="selectpicker bootstrap-select form-control m-bootstrap-select">
+                          <% for (const key in statuses) { %>
+                          <option
+                            <% if (key === state.status) { %> selected <% } %>
+                            value="<%=key%>">
+                            <%=statuses[key]%></option>
+                          <% } %>
+                        </select>
+                      </div>
+                    </div>
+
+                    <label class="col-lg-12 title-features" for="addr">ადგილმდებარეობა</label>
+                    <div id="addr" class="form-group m-form__group row">
+                      <label class="col-lg-2 col-form-label">
+                        ქალაქი/რაიონი*
+                      </label>
+                      <div class="col-lg-4">
+                        <select data-live-search="true" name="municipality" class="selectpicker bootstrap-select form-control m-bootstrap-select">
+                          <% municipalities.forEach(item => { %>
+                          <option
+                            <% if (item.id === state.municipality.id) { %> selected <% } %>
+                            value="<%=item.id%>">
+                            <%=item.name%></option>
+                          <% }); %>
+                        </select>
+                      </div>
+                    </div>
+                    <div <% if (!state.village) { %> style="display: none" <% } %> class="form-group m-form__group row">
+                      <label class="col-lg-2 col-form-label">უბანი</label>
+                      <div class="col-lg-4">
+                        <select data-live-search="true" name="village" class="selectpicker bootstrap-select form-control m-bootstrap-select">
+                          <% villages.forEach(item => { %>
+                          <option
+                            <% if (state.village && item.id === state.village.id) { %> selected <% } %>
+                            value="<%=item.id%>">
+                            <%=item.name%></option>
+                          <% }); %>
+                        </select>
+                      </div>
+                    </div>
+                    <div id="street" <% if (!state.street) { %> style="display: none" <% } %> class="form-group m-form__group row">
+                      <label class="col-lg-2 col-form-label">
+                        ქუჩა*
+                      </label>
+                      <div class="col-lg-4">
+                        <input type="text" name="street" class="form-control m-input" value="<%=state.street%>">
+                      </div>
+                    </div>
+                    <div id="street" class="form-group m-form__group row">
+                      <label class="col-lg-2 col-form-label">
+                        საკადასტრო კოდი
+                      </label>
+                      <div class="col-lg-4">
+                        <input type="text" name="cadastral_code" class="form-control m-input" value="<%=state.cadastral_code%>">
+                      </div>
+                    </div>
+
+                    <label class="col-lg-12 title-features" for="info">დეტალური ინფორმაცია</label>
+                    <div id="info" class="form-group m-form__group row">
+                      <label class="col-lg-2 col-form-label">
+                        ფართი*
+                      </label>
+                      <div class="col-lg-2">
+                        <input id="area" type="number" name="area" class="form-control m-input" value="<%=state.area%>">
+                      </div>
+                      <div class="col-lg-2">
+                        <select name="area_type" class="selectpicker bootstrap-select form-control m-bootstrap-select">
+                          <% areaTypes.forEach(item => { %>
+                            <% if (state.state_type.name !== 'მიწის ნაკვეთი' && item.name !== 'm2') return; %>
+                            <% const area_unit = item.name === 'm2' ? 'მ²' : (item.name === 'ha' ? 'ჰა' : '1/100') %>
+                            <option
+                              <% if (item.id === state.area_type.id) { %> selected <% } %>
+                              value="<%=item.id%>">
+                            <%=area_unit%></option>
+                          <% }); %>
+                        </select>
+                      </div>
+                    </div>
+                    <div class=" m-form__group row">
+                      <label class="col-lg-2 col-form-label">
+                        ფასი*
+                      </label>
+                      <div class="col-lg-1">
+                        <select id="price_type" name="price_type" class="selectpicker bootstrap-select form-control m-bootstrap-select">
+                          <option <% if (state.price_type === 0) { %> selected <% } %> value="0">საერთო</option>
+                          <option <% if (state.price_type === 1) { %> selected <% } %> value="1">1 მ&sup2;-ის</option>
+                        </select>
+                      </div>
+                      <% const price = state.price_type === 0 ? state.total_price : state.square_price; %>
+                      <div class="col-lg-2">
+                        <input id="price" type="number" name="price" class="form-control m-input" value="<%=price%>" >
+                      </div>
+                      <div class="col-lg-1">
+                        <select name="currency" class="selectpicker bootstrap-select form-control m-bootstrap-select currency-select">
+                          <% currencies.forEach(item => { %>
+                            <% const cur = item.name === 'lari' ? '₾' : (item.name === 'dollar' ? '$' : '€') %>
+                            <option
+                              <% if (item.id === state.currency.id) { %> selected <% } %>
+                              value="<%=item.id%>">
+                            <%=cur%></option>
+                          <% }); %>
+                        </select>
+                      </div>
+                      <div style="clear:both" class="cls"></div>
+                      <div id="total_price"></div>
+                    </div>
+                    <% if (state.state_type.name !== 'მიწის ნაკვეთი') { %>
+                      <div class="form-group m-form__group row">
+                        <label class="col-lg-2 col-form-label">
+                          სართული
+                        </label>
+                        <div class="col-lg-2">
+                          <input type="number" name="floor" placeholder="სართული" class="form-control m-input" value="<%=state.floor%>">
+                        </div>
+                        <div class="col-lg-2">
+                          <input type="number" name="floors_quantity" value="<%=state.floors_quantity%>" placeholder="სართულები სულ" class="form-control m-input">
+                        </div>
+                      </div>
+
+                      <div class="form-group m-form__group row">
+                        <label class="col-lg-2 col-form-label">
+                          ოთახები
+                        </label>
+                        <div class="col-lg-2">
+                          <input type="number" name="rooms_quantity" value="<%=state.rooms_quantity%>" placeholder="ოთახების რაოდენობა" class="form-control m-input">
+                        </div>
+                        <div id="bedrooms" class="col-lg-2">
+                          <input type="number" name="bedrooms_quantity" value="<%=state.bedrooms_quantity%>" placeholder="საძინებელი" class="form-control m-input">
+                        </div>
+                      </div>
+
+                      <div id="project_div" class="form-group m-form__group row">
+                        <label class="col-lg-2 col-form-label">
+                          პროექტი
+                        </label>
+                        <div class="col-lg-2">
+                          <select id="proj_select" name="project" class="selectpicker bootstrap-select form-control m-bootstrap-select">
+                            <option value="">აირჩიეთ ერთერთი</option>
+                            <% projects.forEach(item => { %>
+                              <option
+                                <% if (state.project && item.id === state.project.id) { %> selected <% } %>
+                                value="<%=item.id%>">
+                                <%=item.name%></option>
+                            <% }); %>
+                          </select>
+                        </div>
+                      </div>
+                      <%- include('./common-features.edit.ejs', {state, features: {...JSON.parse(state.features)}, conditions, ...features }); %>
+                    <% } else { %>
+                      <%- include('./land-features.edit.ejs', {state, features: {...JSON.parse(state.features)}, ...features }); %>
+                    <% } %>
+
+                    <label class="col-lg-12 title-features" for="add_info">დამატებითი ინფორმაცია</label>
+                    <div id="add_info" class="form-group m-form__group row">
+                      <label class="col-lg-2 col-form-label">
+                        მესაკუთრე*
+                      </label>
+                      <div class="col-lg-4">
+                        <select id="m_select2_13" name="owner" class="bootstrap-select form-control m-bootstrap-select m-select2">
+                          <option value="">აირჩიეთ ერთერთი</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-lg-10 form-group m-form__group row">
+                      <label class="col-lg-2 col-form-label">შესაძლებელია გაცვლა</label>
+                      <label class="m-checkbox">
+                        <input
+                          <% if (state.exchange) { %> checked <% } %>
+                          id="edit_exchange"
+                          name="exchange"
+                          type="checkbox"/>
+                        <span></span>
+                      </label>
+                      <div id="exchange_div" <% if (!state.exchange) { %> style="display: none" <% } %> class="sel-features col-lg-2">
+                        <select id="exch_select" name="exchange" title="აირჩიეთ ერთერთი" class="selectpicker bootstrap-select form-control m-bootstrap-select">
+                          <% for (const key in exchange) { %>
+                          <option
+                            <% if (state.exchange === key) { %> selected <% } %>
+                            value="<%=key%>">
+                            <%=exchange[key]%></option>
+                          <% } %>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="form-group m-form__group row">
+                      <label class="col-lg-2 col-form-label">კომენტარი</label>
+                      <textarea class="col-lg-4" name="comment" cols="30" rows="10" ><%=state.comment%></textarea>
+                    </div>
+
+                    <div class="form-group m-form__group row">
+                        <label class="col-form-label col-lg-2 col-sm-12">
+                         სურათები
+                        </label>
+                        <div class="col-lg-4 col-md-9 col-sm-12">
+                          <div class="m-dropzone dropzone m-dropzone--primary" action="inc/api/dropzone/upload.php" id="m-dropzone-two">
+                            <div class="m-dropzone__msg dz-message needsclick">
+                              <h3 class="m-dropzone__msg-title">
+                                Drop files here or click to upload.
+                              </h3>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
+                    <div class="m-form__actions m-form__actions--solid">
+                      <div class="row">
+                        <div class="col-lg-2"></div>
+                        <div class="col-lg-4">
+                          <button type="button" id="update_state_btn" class="btn btn-success save-button">
+                            შენახვა
+                          </button>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+                <!--end::Form-->
+              </div>
+
+            </div>
+          </div>
+          <!-- BEGIN: Left Aside -->
+          <button class="m-aside-left-close m-aside-left-close--skin-dark" id="m_aside_left_close_btn">
+            <i class="la la-close"></i>
+          </button>
+          <div id="m_aside_left" class="m-grid__item	m-aside-left  m-aside-left--skin-dark ">
+            <!-- BEGIN: Aside Menu -->
+            <% include ../shared/sidebar.ejs %>
+              <!-- END: Left Aside -->
+          </div>
+          <!-- end:: Body -->
+          <!-- begin::Footer -->
+          <% include ../shared/footer.ejs %>
+            <!-- end::Footer -->
+        </div>
+        <!-- end:: Page -->
+
+        <!-- begin::Scroll Top -->
+        <div class="m-scroll-top m-scroll-top--skin-top" data-toggle="m-scroll-top" data-scroll-offset="500" data-scroll-speed="300">
+          <i class="la la-arrow-up"></i>
+        </div>
+        <% include ../shared/scripts/for-all.scripts.ejs %>
+        <% include ../shared/scripts/states.ejs %>
+  </body>
+  <!-- end::Body -->
+
+</html>

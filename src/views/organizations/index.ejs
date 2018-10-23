@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- begin::Head -->
+
+<% include ../shared/head.ejs %>
+  <!-- end::Head -->
+  <!-- end::Body -->
+
+  <body class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--fixed m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default">
+    <!-- begin:: Page -->
+    <div class="m-grid m-grid--hor m-grid--root m-page">
+      <!-- BEGIN: Header -->
+      <% include ../shared/header.ejs %>
+        <!-- END: Header -->
+        <!-- begin::Body -->
+        <div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body">
+            <div class="m-grid__item m-grid__item--fluid m-wrapper">
+                <div class="row">
+                  <div class="container-fluid">
+
+                  </div>
+                </div>
+                <div class="m-content">
+                  <%- include('../shared/search-bar.ejs', {href: '/organizations/create', text: 'ორგანიზაციის დამატება', searchText: 'მოძებნეთ ორგანიზაციის სახელით'}); %>
+                  <div class="m-portlet m-portlet--tab m-portleb-table">
+                    <div class="row">
+                      <div class="container-fluid">
+                        <div id="demo">
+
+                          <div class="table-responsive-vertical shadow-z-1">
+                            <!-- Table starts here -->
+                            <table id="table" class="table  table-mc-light-blue">
+                              <thead>
+                                <tr>
+                                  <th>#</th>
+                                  <th>ორგანიზაციის სახელი</th>
+                                  <th>ხელმძღვანელი</th>
+                                  <th>საიდენტიფიკაციო ნომერი</th>
+                                  <th>ტელეფონი</th>
+                                  <th></th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <% let i = 1; organizations.forEach(org => { %>
+                                  <tr>
+                                    <td data-title="#"><%= i %></td>
+                                    <td data-title="ორგანიზაციის სახელი"><%= org.name %></td>
+                                    <td data-title="ხელმძღვანელი"><%= org.director %></td>
+                                    <td data-title="საიდენტიფიკაციო ნომერი"><%= org.identity_number %></td>
+                                    <td data-title="ტელეფონი"><%= org.phone %></td>
+                                    <td>
+                                      <span style="overflow: visible; width: 132px;">
+                                        <a href="/organizations/<%= org.id %>" class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" title="Edit details">
+                                          <i class="la la-edit"></i>
+                                        </a>
+                                        <a href="#" id="del" uid="<%= org.id %>" data-target="<%=i%>" class="del m-portlet__nav-link btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill" title="Delete">
+                                          <i class="la la-trash"></i>
+                                        </a>
+                                      </span>
+                                    </td>
+                                  </tr>
+                                <% }) %>
+                              </tbody>
+                            </table>
+                            <% if (pages > 1) { %>
+                              <%- include('../shared/pagination.ejs', {pages, current: currentPage, name, searched: false, from: 'organizations'}) %>
+                            <% } %>
+                          </div>
+                        </div>
+                        <!-- Table Constructor change table classes, you don't need it in your project -->
+                      </div>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+          <!-- BEGIN: Left Aside -->
+          <button class="m-aside-left-close m-aside-left-close--skin-dark" id="m_aside_left_close_btn">
+            <i class="la la-close"></i>
+          </button>
+          <div id="m_aside_left" class="m-grid__item	m-aside-left  m-aside-left--skin-dark ">
+            <!-- BEGIN: Aside Menu -->
+            <% include ../shared/sidebar.ejs %>
+              <!-- END: Left Aside -->
+          </div>
+         
+          <!-- end:: Body -->
+          <!-- begin::Footer -->
+          <% include ../shared/footer.ejs %>
+            <!-- end::Footer -->
+        </div>
+        <!-- end:: Page -->
+
+        <!-- begin::Scroll Top -->
+        <div class="m-scroll-top m-scroll-top--skin-top" data-toggle="m-scroll-top" data-scroll-offset="500" data-scroll-speed="300">
+          <i class="la la-arrow-up"></i>
+        </div>
+        <% include ../shared/scripts/for-all.scripts.ejs %>
+        <% include ../shared/scripts/organizations.ejs %>
+  </body>
+  <!-- end::Body -->
+
+</html>

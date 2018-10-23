@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- begin::Head -->
+
+<% include ../shared/head.ejs %>
+  <!-- end::Head -->
+  <!-- end::Body -->
+
+  <body class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--fixed m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default">
+    <!-- begin:: Page -->
+    <div class="m-grid m-grid--hor m-grid--root m-page">
+      <!-- BEGIN: Header -->
+      <% include ../shared/header.ejs %>
+        <!-- END: Header -->
+        <!-- begin::Body -->
+        <div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body">
+          <div class="m-grid__item m-grid__item--fluid m-wrapper">
+            <div class="row">
+              <div class="container-fluid">
+              </div>
+            </div>
+            <div class="m-content">
+              <div class="m-portlet">
+                <div class="m-portlet__head">
+                  <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title">
+                      <span class="m-portlet__head-icon m--hide">
+                        <i class="la la-gear"></i>
+                      </span>
+                      <h3 class="m-portlet__head-text">
+                        ორგანიზაციის დამატება
+                      </h3>
+                      <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+                        <li class="m-nav__item m-nav__item--home">
+                        </li>
+                        <li class="m-nav__item">
+                          <a href="/organizations" class="m-nav__link">
+                          <span class="m-nav__link-text">
+                            დაბრუნება
+                          </span>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <!--begin::Form-->
+                <form id="add_org_form" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator">
+                  <div class="m-portlet__body">
+                    <div class="form-group m-form__group row">
+                      <label class="col-lg-2 col-form-label">
+                        ორგანიზაციის სახელი*
+                      </label>
+                      <div class="col-lg-5">
+                        <input type="text" name="name" class="form-control m-input">
+                        <span class="m-form__help">
+
+                        </span>
+                      </div>
+                    </div>
+                    <div class="form-group m-form__group row">
+                      <label class="col-lg-2 col-form-label">
+                        ხელმძღვანელი*
+                      </label>
+                      <div class="col-lg-5">
+                        <input type="text" name="director" class="form-control m-input">
+                        <span class="m-form__help">
+
+                        </span>
+                      </div>
+                    </div>
+                    <div class="form-group m-form__group row">
+                      <label class="col-lg-2 col-form-label">
+                        საიდენტიფკაციო ნომერი*
+                      </label>
+                      <div class="col-lg-5">
+                        <input type="text" name="identity_number" class="form-control m-input">
+                        <span class="m-form__help">
+
+                        </span>
+                      </div>
+                    </div>
+                    <div class="form-group m-form__group row">
+                      <label class="col-lg-2 col-form-label">
+                        ტელეფონი
+                      </label>
+                      <div class="col-lg-5">
+                        <input id="tel_input" type="text" name="phone" class="form-control m-input">
+                        <span class="m-form__help">
+
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
+                    <div class="m-form__actions m-form__actions--solid">
+                      <div class="row">
+                        <div class="col-lg-2"></div>
+                        <div class="col-lg-6">
+                          <button type="button" id="add_org_btn" class="btn btn-success save-button">
+                            შენახვა
+                          </button>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+                <!--end::Form-->
+              </div>
+
+
+            </div>
+          </div>
+          <!-- BEGIN: Left Aside -->
+          <button class="m-aside-left-close m-aside-left-close--skin-dark" id="m_aside_left_close_btn">
+            <i class="la la-close"></i>
+          </button>
+          <div id="m_aside_left" class="m-grid__item	m-aside-left  m-aside-left--skin-dark ">
+            <!-- BEGIN: Aside Menu -->
+            <% include ../shared/sidebar.ejs %>
+              <!-- END: Left Aside -->
+          </div>
+          <!-- end:: Body -->
+          <!-- begin::Footer -->
+          <% include ../shared/footer.ejs %>
+            <!-- end::Footer -->
+        </div>
+        <!-- end:: Page -->
+
+        <!-- begin::Scroll Top -->
+        <div class="m-scroll-top m-scroll-top--skin-top" data-toggle="m-scroll-top" data-scroll-offset="500" data-scroll-speed="300">
+          <i class="la la-arrow-up"></i>
+        </div>
+        <% include ../shared/scripts/for-all.scripts.ejs %>
+        <% include ../shared/scripts/organizations.ejs %>
+  </body>
+  <!-- end::Body -->
+
+</html>

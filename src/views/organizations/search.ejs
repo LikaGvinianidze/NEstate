@@ -1,0 +1,38 @@
+<div class="table-responsive-vertical shadow-z-1">
+  <!-- Table starts here -->
+  <table id="table" class="table  table-mc-light-blue">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>ორგანიზაციის სახელი</th>
+        <th>ხელმძღვანელი</th>
+        <th>საიდენტიფიკაციო ნომერი</th>
+        <th>ტელეფონი</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% let i = 1; organizations.forEach(org => { %>
+        <tr>
+          <td data-title="ID"><%= i %></td>
+          <td data-title="Name"><%= org.name %></td>
+          <td data-title="Link"><%= org.director %></td>
+          <td data-title="Status"><%= org.identity_number %></td>
+          <td data-title="Phone"><%= org.phone %></td>
+          <td>
+            <span style="overflow: visible; width: 132px;">
+              <a href="/organizations/<%= org.id %>" class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" title="Edit details">
+                <i class="la la-edit"></i>
+              </a>
+              <a href="#" id="del" uid="<%= org.id %>" data-target="<%=i%>" class="del m-portlet__nav-link btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill" title="Delete">
+                <i class="la la-trash"></i>
+              </a>
+            </span>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+  <% if (pages > 1) { %>
+    <%- include('../shared/pagination.ejs', {pages, current: currentPage, name, searched: false, from: 'organizations'}) %>
+  <% } %>
+</div>

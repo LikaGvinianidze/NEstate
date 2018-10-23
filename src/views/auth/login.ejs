@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <% include ./../shared/head.ejs %>
+<body>
+  <div class="limiter">
+    <div class="container-login100 login-bg">
+      <div class="wrap-login100 p-t-30 p-b-50">
+        <span class="login100-form-title p-b-41">
+          NEstate
+        </span>
+        <form id="login_form" class="login100-form validate-form">
+
+          <div class="wrap-input100 validate-input" data-validate = "Enter username">
+            <input class="input100" type="text" name="email" placeholder="ელ-ფოსტა" autocomplete="off">
+            <span class="focus-input100" data-placeholder="&#xe82a;"></span>
+          </div>
+
+          <div class="wrap-input100 validate-input" data-validate="Enter password">
+            <input class="input100" type="password" name="password" placeholder="პაროლი" autocomplete="off">
+            <span class="focus-input100" data-placeholder="&#xe80f;"></span>
+          </div>
+
+          <div class="container-login100-form-btn">
+            <button class="login100-form-btn" id="m_login_signin_submit">
+              შესვლა
+            </button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+<% include ./../shared/scripts/for-all.scripts.ejs %>
+<% include ./../shared/scripts/auth.ejs %>
+</html>

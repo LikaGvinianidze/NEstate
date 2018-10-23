@@ -1,0 +1,41 @@
+<div class="table-responsive-vertical shadow-z-1">
+  <!-- Table starts here -->
+  <table id="table" class="table  table-mc-light-blue">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>სახელი</th>
+        <th>გვარი</th>
+        <th>ელფოსტა</th>
+        <th>ტელეფონი</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% let i = 1; users.forEach(user => { %>
+        <tr>
+          <td data-title="ID"><%= i %></td>
+          <td data-title="Name"><%= user.firstname %></td>
+          <td data-title="Link"><%= user.lastname %></td>
+          <td data-title="Status"><%= user.email %></td>
+          <td data-title="Phone"><%= user.phone %></td>
+          <td>
+            <span style="overflow: visible; width: 132px;">
+              <a href="/users/<%= user.id %>" class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" title="Edit details">
+                <i class="la la-edit"></i>
+              </a>
+              <% if (email !== user.email) { %>
+              <a href="#" id="del" uid="<%= user.id %>" data-target="<%=i%>" class="del m-portlet__nav-link btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill" title="Delete">
+                <i class="la la-trash"></i>
+              </a>
+              <% } %>
+            </span>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+  <% if (pages > 1) { %>
+    <%- include('../shared/pagination.ejs', {pages, current: currentPage, name, searched: false, from: 'users'}) %>
+  <% } %>
+</div>

@@ -1,0 +1,177 @@
+<% if (land) { %>
+<div class="col-md-4">
+  <div class="checkbox-in">
+    <label class="m-checkbox det-checkbox main-checkbox">
+      <input type="checkbox" name="gas" value="gas">ბუნებრვი აირი<span></span>
+    </label>
+    <label class="m-checkbox det-checkbox main-checkbox">
+      <input type="checkbox" name="electricity" value="electricity">ელექტროენერგია<span></span>
+    </label>
+    <label class="m-checkbox det-checkbox main-checkbox">
+      <input type="checkbox" name="water" value="water">წყალი<span></span>
+    </label>
+  </div>
+</div>
+<div class="col-md-4">
+  <div class="checkbox-in">
+    <label class="m-checkbox det-checkbox main-checkbox">
+      <input type="checkbox" name="road" value="road">ასფალტის გზა<span></span>
+    </label>
+    <label class="m-checkbox det-checkbox main-checkbox">
+      <input type="checkbox" name="sawage" value="sawage">კანალიზაცია<span></span>
+    </label>
+  </div>
+</div>,
+<% } else { %>
+<div class="col-md-4">
+  <div class="checkbox-in">
+    <label class="m-checkbox det-checkbox main-checkbox">
+      <input type="checkbox" name="balcony" value="balcony">აივანი<span></span>
+    </label>
+    <label class="m-checkbox det-checkbox main-checkbox">
+      <input type="checkbox" name="veranda" value="veranda">ვერანდა<span></span>
+    </label>
+    <label class="m-checkbox det-checkbox main-checkbox">
+      <input type="checkbox" name="loggie" value="loggie">ლოჯი<span></span>
+    </label>
+    <label class="m-checkbox det-checkbox main-checkbox">
+      <input type="checkbox" name="gas" value="gas">ბუნებრივი აირი<span></span>
+    </label>
+    <label class="m-checkbox det-checkbox main-checkbox">
+      <input type="checkbox" name="fireplace" value="fireplace">ბუხარი<span></span>
+    </label>
+    <label class="m-checkbox det-checkbox main-checkbox">
+      <input type="checkbox" name="furniture" value="furniture">ავეჯი<span></span>
+    </label>
+    <label class="m-checkbox det-checkbox main-checkbox">
+      <input type="checkbox" name="pass_elevator" value="pass_elevator">სამგზავრო ლიფტი<span></span>
+    </label>
+    <label class="m-checkbox det-checkbox main-checkbox">
+      <input type="checkbox" name="serv_elevator" value="serv_elevator">სატვირთო ლიფტი<span></span>
+    </label>
+    <label class="m-checkbox det-checkbox main-checkbox">
+      <input type="checkbox" name="telephone" value="telephone">ტელეფონი<span></span>
+    </label>
+    <label class="m-checkbox det-checkbox main-checkbox">
+      <input type="checkbox" name="internet" value="internet">ინტერნეტი<span></span>
+    </label>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox-in">
+    <label class="m-checkbox det-checkbox main-checkbox">
+      <input type="checkbox" name="tv" value="tv">ტელევიზორი<span></span>
+    </label>
+    <label class="m-checkbox det-checkbox main-checkbox">
+      <input type="checkbox" name="air_conditioner" value="air_conditioner">კონდიციონერი<span></span>
+    </label>
+    <label class="m-checkbox det-checkbox main-checkbox">
+      <input type="checkbox" name="washing_machine" value="washin_machine">სარეცხი მანქანა<span></span>
+    </label>
+    <div class="check-all">
+      <label class="m-checkbox det-checkbox main-checkbox">
+        <input type="checkbox" class="select-all">ცხელი წყალი<span></span>
+      </label>
+      <label class="m-checkbox det-checkbox main-checkbox">
+        <input type="checkbox" name="hot_water" value="gasHeater">გაზის გამაცხელებელი<span></span>
+      </label>
+      <label class="m-checkbox det-checkbox main-checkbox">
+        <input type="checkbox" name="hot_water" value="tank">ავზი<span></span>
+      </label>
+      <label class="m-checkbox det-checkbox main-checkbox">
+        <input type="checkbox" name="hot_water" value="elHeater">დენის გამცხელებელი<span></span>
+      </label>
+      <label class="m-checkbox det-checkbox main-checkbox">
+        <input type="checkbox" name="hot_water" value="naturalHotWater">ბუნებრივი ცხელი წყალი<span></span>
+      </label>
+      <label class="m-checkbox det-checkbox main-checkbox">
+        <input type="checkbox" name="hot_water" value="solarHeater">მზის გამათბობელი<span></span>
+      </label>
+      <label class="m-checkbox det-checkbox main-checkbox">
+        <input type="checkbox" name="hot_water" value="centralHeating">ცენტრალური გათბობის სისტემა<span></span>
+      </label>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox-in">
+    <div class="check-all">
+      <label class="m-checkbox det-checkbox main-checkbox">
+        <input type="checkbox" class="select-all">გათბობა<span></span>
+      </label>
+      <label class="m-checkbox det-checkbox main-checkbox">
+        <input type="checkbox" name="heating" value="centralHeating">ცენტრალური გათბობა<span></span>
+      </label>
+      <label class="m-checkbox det-checkbox main-checkbox">
+        <input type="checkbox" name="heating" value="gasHeater">გაზის გამთბობელი<span></span>
+      </label>
+      <label class="m-checkbox det-checkbox main-checkbox">
+        <input type="checkbox" name="heating" value="elHeater">დენის გამათბობელი<span></span>
+      </label>
+      <label class="m-checkbox det-checkbox main-checkbox">
+        <input type="checkbox" name="heating" value="floorHeater">იატაკის გათბობა<span></span>
+      </label>
+    </div>
+    <div class="check-all">
+      <label class="m-checkbox det-checkbox main-checkbox">
+        <input type="checkbox" class="select-all">პარკინგი<span></span>
+      </label>
+      <label class="m-checkbox det-checkbox main-checkbox">
+        <input type="checkbox" name="parking" value="garage">ავტოფარეხი<span></span>
+      </label>
+      <label class="m-checkbox det-checkbox main-checkbox">
+        <input type="checkbox" name="parking" value="parkingPlace">პარკინგის ადგილი<span></span>
+      </label>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox-in">
+    <div id="restrooms" class="check-all">
+      <label class="m-checkbox det-checkbox main-checkbox">
+        <input type="checkbox" class="select-all">სველი წერტილი<span></span>
+      </label>
+      <label class="m-checkbox det-checkbox main-checkbox">
+        <input type="checkbox" class="restroom" name="restrooms_quantity" value="one">1<span></span>
+      </label>
+      <label class="m-checkbox det-checkbox main-checkbox">
+        <input type="checkbox" class="restroom" name="restrooms_quantity" value="two">2<span></span>
+      </label>
+      <label class="m-checkbox det-checkbox main-checkbox">
+        <input type="checkbox" class="restroom" name="restrooms_quantity" value="morethree">3+<span></span>
+      </label>
+      <label class="m-checkbox det-checkbox main-checkbox">
+        <input type="checkbox" class="restroom" name="restrooms_quantity" value="common">საერთო<span></span>
+      </label>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="checkbox-in">
+    <div class="check-all">
+      <label class="m-checkbox det-checkbox main-checkbox">
+        <input type="checkbox" class="select-all">სათავსო<span></span>
+      </label>
+      <label class="m-checkbox det-checkbox main-checkbox">
+        <input type="checkbox" name="store" value="basement">სარდაფი<span></span>
+      </label>
+      <label class="m-checkbox det-checkbox main-checkbox">
+        <input type="checkbox" name="store" value="attic">სხვენი<span></span>
+      </label>
+      <label class="m-checkbox det-checkbox main-checkbox">
+        <input type="checkbox" name="store" value="pantry">საკუჭნაო<span></span>
+      </label>
+      <label class="m-checkbox det-checkbox main-checkbox">
+        <input type="checkbox" name="store" value="outdoorStore">გარე სათავსო<span></span>
+      </label>
+      <label class="m-checkbox det-checkbox main-checkbox">
+        <input type="checkbox" name="store" value="generalStore">საერთო სათავსო<span></span>
+      </label>
+    </div>
+  </div>
+</div>
+<% } %>

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- begin::Head -->
+
+<% include ../shared/head.ejs %>
+  <!-- end::Head -->
+  <!-- end::Body -->
+
+  <body class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--fixed m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default">
+    <!-- begin:: Page -->
+    <div class="m-grid m-grid--hor m-grid--root m-page">
+      <!-- BEGIN: Header -->
+      <% include ../shared/header.ejs %>
+        <!-- END: Header -->
+        <!-- begin::Body -->
+        <div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body">
+          <div class="m-grid__item m-grid__item--fluid m-wrapper">
+            <div class="row">
+              <div class="container-fluid">
+              </div>
+            </div>
+            <div class="m-content">
+              <div class="m-portlet">
+                <div class="m-portlet__head">
+                  <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title">
+                      <span class="m-portlet__head-icon m--hide">
+                        <i class="la la-gear"></i>
+                      </span>
+                      <h3 class="m-portlet__head-text">
+                        უძრავი ქონების დამატება
+                      </h3>
+                      <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+                        <li class="m-nav__item m-nav__item--home">
+                        </li>
+                        <li class="m-nav__item">
+                          <a href="/states" class="m-nav__link">
+                            <span class="m-nav__link-text">
+                              <i class="la la-angle-double-left"></i>
+                              დაბრუნება
+                            </span>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <!--begin::Form-->
+                <form id="add_state_form" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator">
+                  <!-- <div id="err_msg" class="form-group m-form__group row"></div> -->
+                  <div class="m-portlet__body">
+
+                    <label class="col-lg-12 title-features" for="st_type">
+                      <span>განცხადების ტიპი</span>
+                    </label>
+                    <div id="st_type" class="form-group m-form__group row">
+                      <label class="col-lg-2 col-form-label">
+                        უძრავი ქონების ტიპი*
+                      </label>
+                      <div class="col-lg-2">
+                        <select id="state_type" name="state_type" class="selectpicker bootstrap-select form-control m-bootstrap-select">
+                          <option value="">აირჩიეთ ერთერთი</option>
+                        </select>
+                      </div>
+                      <div style="display: none" id="flatType_div" class="col-lg-2">
+                        <select id="flat_type" name="flat_type" class="selectpicker bootstrap-select form-control m-bootstrap-select">
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group m-form__group row">
+                      <label class="col-lg-2 col-form-label">
+                        გარიგების ფორმა*
+                      </label>
+                      <div class="col-lg-2">
+                        <select id="transaction_type" name="transaction_type" class="selectpicker bootstrap-select form-control m-bootstrap-select">
+                          <option value="">აირჩიეთ ერთერთი</option>
+                        </select>
+                      </div>
+                      <div id="status_div" class="col-lg-2">
+                        <select id="status" name="status" class="selectpicker bootstrap-select form-control m-bootstrap-select">
+                          <option value="">სტატუსი</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <label class="col-lg-12 title-features" for="addr">ადგილმდებარეობა</label>
+                    <div id="addr" class="form-group m-form__group row">
+                      <label class="col-lg-2 col-form-label">
+                        ქალაქი/რაიონი*
+                      </label>
+                      <div class="col-lg-4">
+                        <select id="m_select2_1" name="municipality" class="bootstrap-select form-control m-bootstrap-select m-select2">
+                          <option value="">აირჩიეთ ერთერთი</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div id="children_div" style="display: none" class="form-group m-form__group row">
+                      <label class="col-lg-2 col-form-label">უბანი</label>
+                      <div id="children" class="col-lg-4"></div>
+                    </div>
+                    <div id="street" style="display: none" class="form-group m-form__group row">
+                      <label class="col-lg-2 col-form-label">
+                        ქუჩა*
+                      </label>
+                      <div class="col-lg-4">
+                        <input type="text" name="street" class="form-control m-input">
+                      </div>
+                    </div>
+                    <div id="street" class="form-group m-form__group row">
+                      <label class="col-lg-2 col-form-label">
+                        საკადასტრო კოდი
+                      </label>
+                      <div class="col-lg-4">
+                        <input type="text" name="cadastral_code" class="form-control m-input">
+                      </div>
+                    </div>
+
+                    <label class="col-lg-12 title-features" for="info">დეტალური ინფორმაცია</label>
+                    <div id="info" class="form-group m-form__group row">
+                      <label class="col-lg-2 col-form-label">
+                        ფართი*
+                      </label>
+                      <div class="col-lg-2">
+                        <input id="area" type="number" name="area" class="form-control m-input">
+                      </div>
+                      <div class="col-lg-2">
+                        <select id="area_unit" name="area_type" class="selectpicker bootstrap-select form-control m-bootstrap-select">
+                        </select>
+                      </div>
+                    </div>
+                    <div class=" m-form__group row">
+                      <label class="col-lg-2 col-form-label">
+                        ფასი*
+                      </label>
+                      <div class="col-lg-1">
+                        <select id="price_type" name="price_type" class="selectpicker bootstrap-select form-control m-bootstrap-select">
+                          <option value="0">საერთო</option>
+                          <option value="1">1 მ&sup2;-ის</option>
+                        </select>
+                      </div>
+                      <div class="col-lg-2">
+                        <input id="price" type="number" name="price" class="form-control m-input">
+                      </div>
+                      <div class="col-lg-1">
+                        <select id="currency" name="currency" class="selectpicker bootstrap-select form-control m-bootstrap-select currency-select price-currency">
+                        </select>
+                      </div>
+                      <div style="clear:both" class="cls"></div>
+                      <div id="total_price"></div>
+                    </div>
+                    <div id="for_common">
+                      <div class="form-group m-form__group row">
+                        <label class="col-lg-2 col-form-label">
+                          სართული
+                        </label>
+                        <div class="col-lg-2">
+                          <input type="number" name="floor" placeholder="სართული" class="form-control m-input">
+                        </div>
+                        <div class="col-lg-2">
+                          <input type="number" name="floors_quantity" placeholder="სართულები სულ" class="form-control m-input">
+                        </div>
+                      </div>
+
+                      <div class="form-group m-form__group row">
+                        <label class="col-lg-2 col-form-label">
+                          ოთახები
+                        </label>
+                        <div class="col-lg-2">
+                          <input type="number" name="rooms_quantity" placeholder="ოთახების რაოდენობა" class="form-control m-input">
+                        </div>
+                        <div id="bedrooms" class="col-lg-2">
+                          <input type="number" name="bedrooms_quantity" placeholder="საძინებელი" class="form-control m-input">
+                        </div>
+                      </div>
+
+                      <div id="project_div" class="form-group m-form__group row">
+                        <label class="col-lg-2 col-form-label">
+                          პროექტი
+                        </label>
+                        <div class="col-lg-2">
+                          <select id="m_select2_12" name="project" class="bootstrap-select form-control m-bootstrap-select m-select2">
+                            <option value="">აირჩიეთ ერთერთი</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div id="for_features"></div>
+
+                    <label class="col-lg-12 title-features" for="add_info">დამატებითი ინფორმაცია</label>
+                    <div id="add_info" class="form-group m-form__group row">
+                      <label class="col-lg-2 col-form-label">
+                        მესაკუთრე*
+                      </label>
+                      <div class="col-lg-4">
+                        <select id="m_select2_13" name="owner" class="bootstrap-select form-control m-bootstrap-select m-select2">
+                          <option value="">აირჩიეთ ერთერთი</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="some col-lg-12 form-group m-form__group row">
+                      <label class="col-lg-2 col-form-label">შესაძლებელია გაცვლა</label>
+                      <label class="m-checkbox"><input id="exchange" name="exchange" type="checkbox" /> <span></span></label>
+                      <div class="sel-features col-lg-2"></div>
+                    </div>
+
+                    <div class="form-group m-form__group row">
+                      <label class="col-lg-2 col-form-label">კომენტარი</label>
+                      <textarea class="col-lg-4" name="comment" cols="30" rows="10"></textarea>
+                    </div>
+
+                    <div class="form-group m-form__group row">
+                      <label class="col-form-label col-lg-2 col-sm-12">
+                        სურათები
+                      </label>
+                      <div class="col-lg-4 col-md-9 col-sm-12">
+                        <div class="m-dropzone dropzone m-dropzone--primary" action="inc/api/dropzone/upload.php" id="m-dropzone-two">
+                          <div class="m-dropzone__msg dz-message needsclick">
+                            <h3 class="m-dropzone__msg-title">
+                              Drop files here or click to upload.
+                            </h3>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
+                    <div class="m-form__actions m-form__actions--solid">
+                      <div class="row">
+                        <div class="col-lg-2"></div>
+                        <div class="col-lg-4">
+                          <button type="button" id="add_state_btn" class="btn btn-success save-button">
+                            შენახვა
+                          </button>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+                <!--end::Form-->
+              </div>
+
+            </div>
+          </div>
+          <!-- BEGIN: Left Aside -->
+          <button class="m-aside-left-close m-aside-left-close--skin-dark" id="m_aside_left_close_btn">
+            <i class="la la-close"></i>
+          </button>
+          <div id="m_aside_left" class="m-grid__item	m-aside-left  m-aside-left--skin-dark ">
+            <!-- BEGIN: Aside Menu -->
+            <% include ../shared/sidebar.ejs %>
+              <!-- END: Left Aside -->
+          </div>
+          <!-- end:: Body -->
+          <!-- begin::Footer -->
+          <% include ../shared/footer.ejs %>
+            <!-- end::Footer -->
+        </div>
+        <!-- end:: Page -->
+
+        <!-- begin::Scroll Top -->
+        <div class="m-scroll-top m-scroll-top--skin-top" data-toggle="m-scroll-top" data-scroll-offset="500" data-scroll-speed="300">
+          <i class="la la-arrow-up"></i>
+        </div>
+        <% include ../shared/scripts/for-all.scripts.ejs %>
+        <% include ../shared/scripts/states.ejs %>
+        <script>
+          Dropzone.autoDiscover = false;
+
+          var myDropzone = new Dropzone("#m-dropzone-two", {
+            addRemoveLinks: true,
+            acceptedFiles: ".png, .jpg",
+            dictRemoveFile: "x",
+          });
+        </script>
+  </body>
+  <!-- end::Body -->
+
+</html>

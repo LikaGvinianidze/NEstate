@@ -1,0 +1,480 @@
+<div class="m-portlet m-portlet--tab m-portlet-search">
+
+  <div class="container-fluid">
+    <div class="row justify-content-end">
+      <div class="col-md-2">
+        <a href="/states/create">
+          <button type="reset" class="btn btn-primary custom-btn-main add-btn">
+          ახალი განცხადება <i class="fa fa-2x fa-plus"></i>
+          </button>
+        </a>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-2">
+        <label for="m_select2_111" class="label-search">უძრავი ქონების ტიპი</label>
+        <select id="m_select2_111" name="state_type" class="searchTerm bootstrap-select form-control m-bootstrap-select m-select2 states-select">
+          <option value="">აირჩიეთ ერთერთი</option>
+        </select>
+      </div>
+      <div class="col-md-2">
+        <label for="m_select2_001" class="label-search">გარიგების ფორმა</label>
+        <select id="m_select2_001" name="transaction_type" class="searchTerm bootstrap-select form-control m-bootstrap-select m-select2 states-select">
+          <option value="">აირჩიეთ ერთერთი</option>
+        </select>
+      </div>
+      <div id="status_div" class="col-md-2">
+        <label class="label-search">სტატუსი</label>
+        <div class="select-sumo">
+          <select multiple="multiple" name="status" id="status_search">
+          </select>
+          <div class="arrow-currency">
+            <i class="la la-angle-down"></i>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <label for="m_select2_002" class="label-search">მისამართი</label>
+        <select id="m_select2_002" name="municipality" class="searchTerm bootstrap-select form-control m-bootstrap-select m-select2 states-select margin">
+          <option value="">აირჩიეთ ერთერთი</option>
+        </select>
+      </div>
+
+      <div id="villages_filter" class="col-md-2">
+        <label class="label-search">უბანი</label>
+        <div class="select-sumo">
+          <select multiple="multiple" name="village" id="village">
+          </select>
+          <div class="arrow-currency">
+            <i class="la la-angle-down"></i>
+          </div>
+        </div>
+      </div>
+      <div id="street_filter" class="col-md-2">
+        <label class="label-search">ქუჩა</label>
+        <input type="text" name="any_word" class="form-control" placeholder="ჩაწერეთ">
+      </div>
+
+
+
+  
+  
+
+    </div>
+
+    <div class="row clients-row">
+    
+  
+      <div class="col-md-1">
+        <label for="" class="label-search"> ფასი</label>
+        <div class="m-nav__item m-dropdown m-dropdown--large m-dropdown--arrow m-dropdown--align-center m-dropdown--mobile-full-width m-dropdown--skin-light	m-list-search m-list-search--skin-light cash-input"
+          data-dropdown-toggle="click" data-dropdown-persistent="true" data-search-type="dropdown">
+          <a href="#" class="m-nav__link m-dropdown__toggle">
+            <span class="m-nav__link-badge m-badge m-badge--dot m-badge--info m--hide"></span>
+            <span class="m-nav__link-icon">
+              <div class="currency-border">
+
+                <span class="currency-border-in"> <span id="outputArea-1">დან</span> - <span id="outputArea-2">მდე</span></span>
+                <div class="arrow-currency">
+                  <i class="la la-angle-down"></i>
+                </div>
+              </div>
+            </span>
+          </a>
+          <div class="m-dropdown__wrapper dropdown-currency-wrapper">
+
+            <div class="m-dropdown__inner">
+
+              <div class="m-dropdown__header m--align-center">
+
+                <div class="pricing-container">
+                  <div class="pricing-switcher">
+                    <p class="fieldset fieldset-1">
+                      <% currencies.forEach(cur => { %>
+                        <% if (cur.name === 'euro') return; %>
+                        <% const id = cur.name === 'lari' ? "monthly-1" : "yearly-1" %>
+                        <% const className = cur.name === 'lari' ? "monthly-label" : "yearly-label" %>
+                        <% const text = cur.name === 'lari' ? '₾' : '$'%>
+                        <input type="radio" name="currency" value="<%=cur.id%>" id=<%=id%> >
+                        <label
+                          for=<%=id%>
+                          class= <%=className%> >
+                          <%=text%>
+                        </label>
+                      <% }); %>
+                      <span class="switch"></span>
+                    </p>
+                  </div>
+
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <label for="">დან</label>
+                    <input type="number" name="price_from" class="form-control currency-input" id="testArea-1">
+                  </div>
+                  <div class="col-md-6">
+                    <label for="">მდე</label>
+                    <input type="number" name="price_to" class="form-control currency-input" id="testArea-2">
+                  </div>
+                </div>
+                <button type="reset" class="search-for-state btn btn-success custom-btn">
+                  ძიება
+                </button>
+                <button type="reset" class="clear-for-state btn btn-danger custom-btn">
+                  გასუფთავება
+                </button>
+                <div class="cls"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-1">
+        <label for="" class="label-search"> ფასი მ²</label>
+        <div class="m-nav__item m-dropdown m-dropdown--large m-dropdown--arrow m-dropdown--align-center m-dropdown--mobile-full-width m-dropdown--skin-light	m-list-search m-list-search--skin-light"
+          data-dropdown-toggle="click" data-dropdown-persistent="true" data-search-type="dropdown">
+          <a href="#" class="m-nav__link m-dropdown__toggle">
+            <span class="m-nav__link-badge m-badge m-badge--dot m-badge--info m--hide"></span>
+            <span class="m-nav__link-icon">
+              <div class="currency-border">
+
+                <span class="currency-border-in"> <span id="outputArea-3">დან</span> - <span id="outputArea-4">მდე</span></span>
+                <div class="arrow-currency">
+                  <i class="la la-angle-down"></i>
+                </div>
+              </div>
+            </span>
+          </a>
+          <div class="m-dropdown__wrapper dropdown-currency-wrapper">
+            <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
+            <div class="m-dropdown__inner">
+              <div class="m-dropdown__header m--align-center">
+
+                <div class="pricing-container">
+                  <div class="pricing-switcher2">
+                    <p class="fieldset fieldset-2">
+                      <% currencies.forEach(cur => { %>
+                        <% if (cur.name === 'euro') return; %>
+                        <% const id = cur.name === 'lari' ? "monthly-2" : "yearly-2" %>
+                        <% const className = cur.name === 'lari' ? "monthly-label" : "yearly-label" %>
+                        <% const text = cur.name === 'lari' ? '₾' : '$'%>
+                        <input type="radio" name="cur_square_price" value="<%=cur.id%>" id=<%=id%> >
+                        <label
+                          for=<%=id%>
+                          class= <%=className%> >
+                          <%=text%>
+                        </label>
+                      <% }); %>
+                      <span class="switch"></span>
+                    </p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <label for="">დან</label>
+                    <input type="number" name="pricefrom_per_m" class="form-control currency-input" id="testArea-3">
+                  </div>
+                  <div class="col-md-6">
+                    <label for="">მდე</label>
+                    <input type="number" name="priceto_per_m" class="form-control currency-input" id="testArea-4">
+                  </div>
+                </div>
+
+                <div class="cls"></div>
+                <button type="reset" class="search-for-state btn btn-success custom-btn">
+                  ძიება
+                </button>
+                <button type="reset" class="clear-for-state btn btn-danger custom-btn">
+                  გასუფთავება
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="area_div" class="col-md-1">
+        <label for="" class="label-search"> ფართი </label>
+        <div class="m-nav__item m-dropdown m-dropdown--large m-dropdown--arrow m-dropdown--align-center m-dropdown--mobile-full-width m-dropdown--skin-light	m-list-search m-list-search--skin-light floor-in"
+          data-dropdown-toggle="click" data-dropdown-persistent="true" data-search-type="dropdown">
+          <a href="#" class="m-nav__link m-dropdown__toggle">
+            <span class="m-nav__link-badge m-badge m-badge--dot m-badge--info m--hide"></span>
+            <span class="m-nav__link-icon">
+              <div class="currency-border">
+
+                <span class="currency-border-in"> <span id="outputArea-7">დან</span> - <span id="outputArea-8">მდე</span></span>
+                <div class="arrow-currency">
+                  <i class="la la-angle-down"></i>
+                </div>
+              </div>
+            </span>
+          </a>
+          <div class="m-dropdown__wrapper dropdown-currency-wrapper">
+            <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
+            <div class="m-dropdown__inner">
+              <div class="m-dropdown__header m--align-center">
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <label for="">დან</label>
+                    <input type="number" name="area_from" class="form-control currency-input" id="testArea-7">
+                  </div>
+                  <div class="col-md-6">
+                    <label for="">მდე</label>
+                    <input type="number" name="area_to" class="form-control currency-input" id="testArea-8">
+                  </div>
+                </div>
+                <div class="cls"></div>
+                <button type="reset" class="search-for-state btn btn-success custom-btn">
+                  ძიება
+                </button>
+                <button type="reset" class="clear-for-state btn btn-danger custom-btn">
+                  გასუფთავება
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="floor_div" class="col-md-1">
+        <label for="" class="label-search"> სართული </label>
+        <div class="m-nav__item m-dropdown m-dropdown--large m-dropdown--arrow m-dropdown--align-center m-dropdown--mobile-full-width m-dropdown--skin-light	m-list-search m-list-search--skin-light floor-in"
+          data-dropdown-toggle="click" data-dropdown-persistent="true" data-search-type="dropdown">
+          <a href="#" class="m-nav__link m-dropdown__toggle">
+            <span class="m-nav__link-badge m-badge m-badge--dot m-badge--info m--hide"></span>
+            <span class="m-nav__link-icon">
+              <div class="currency-border">
+
+                <span class="currency-border-in"> <span id="outputArea-5">დან</span> - <span id="outputArea-6">მდე</span></span>
+                <div class="arrow-currency">
+                  <i class="la la-angle-down"></i>
+                </div>
+              </div>
+            </span>
+          </a>
+          <div class="m-dropdown__wrapper dropdown-currency-wrapper">
+            <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
+            <div class="m-dropdown__inner">
+              <div class="m-dropdown__header m--align-center">
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <label for="">დან</label>
+                    <input type="number" name="floor_from" class="form-control currency-input" id="testArea-5">
+                  </div>
+                  <div class="col-md-6">
+                    <label for="">მდე</label>
+                    <input type="number" name="floor_to" class="form-control currency-input" id="testArea-6">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="checkboxes checkboxes-row">
+                    <div class="number-checkbox-container ">
+                      <div class="number-row row number-checkboxes-row">
+                        <div class="col-3">
+                          <label class="m-checkbox det-checkbox">
+                            <input  value="topFloor" type="checkbox"> ბოლო
+                            <span></span>
+                          </label>
+                        </div>
+                        <div class="col-3">
+                          <label class="m-checkbox det-checkbox">
+                            <input value="attic" type="checkbox"> სხვენი
+                            <span></span>
+                          </label>
+                        </div>
+                        <div class="col-5">
+                          <label class="m-checkbox det-checkbox">
+                            <input value="notTop" type="checkbox"> არა ბოლო
+                            <span></span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="cls"></div>
+                <button type="reset" class="search-for-state btn btn-success custom-btn">
+                  ძიება
+                </button>
+                <button type="reset" class="clear-for-state btn btn-danger custom-btn">
+                  გასუფთავება
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <label for="" class="label-search"> კეთილმოწყობა </label>
+        <div class="m-nav__item m-dropdown m-dropdown--large m-dropdown--arrow m-dropdown--align-center m-dropdown--mobile-full-width m-dropdown--skin-light	m-list-search m-list-search--skin-light"
+          data-dropdown-toggle="click" data-dropdown-persistent="true" data-search-type="dropdown">
+          <a href="#" class="m-nav__link m-dropdown__toggle">
+            <span class="m-nav__link-badge m-badge m-badge--dot m-badge--info m--hide"></span>
+            <span class="m-nav__link-icon">
+              <div class="currency-border">
+
+                <span class="currency-border-in">აირჩიეთ</span>
+                <div class="arrow-currency">
+                  <i class="la la-angle-down"></i>
+                </div>
+              </div>
+            </span>
+          </a>
+          <div class="m-dropdown__wrapper dropdown-currency-wrapper dropdown-features">
+            <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
+            <div class="m-dropdown__inner">
+              <div class="m-dropdown__header">
+                <div id="features_div" class="row">
+                </div>
+                <div class="cls"></div>
+                <button type="reset" class="search-for-state btn btn-success custom-btn">
+                  ძიება
+                </button>
+                <button type="reset" class="clear-for-state btn btn-danger custom-btn">
+                  გასუფთავება
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-2">
+        <label for="" class="label-search"> დეტალური ძებნა </label>
+        <div class="m-nav__item m-dropdown m-dropdown--large m-dropdown--arrow m-dropdown--align-center m-dropdown--mobile-full-width m-dropdown--skin-light	m-list-search m-list-search--skin-light in-search"
+          data-dropdown-toggle="click" data-dropdown-persistent="true" data-search-type="dropdown">
+          <a href="#" class="m-nav__link m-dropdown__toggle">
+            <span class="m-nav__link-badge m-badge m-badge--dot m-badge--info m--hide"></span>
+            <span class="m-nav__link-icon">
+              <div class="currency-border">
+
+                <span class="currency-border-in">აირჩიეთ</span>
+                <div class="arrow-currency">
+                  <i class="la la-angle-down"></i>
+                </div>
+              </div>
+            </span>
+          </a>
+          <div class="m-dropdown__wrapper dropdown-sumo-select">
+            <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
+            <div class="m-dropdown__inner">
+              <div class="m-dropdown__header m--align-center">
+
+                <div class="row">
+                  <div id="rooms_filter" class="col-md-5">
+                    <div class="search-in">
+                      <span class="label-search">ოთახი</span>
+                      <div id="rooms" class="number-checkbox-container ">
+
+                        <div class="number">
+                          <span class="m-auto">1</span>
+                          <input name="rooms_quantity" value="1" type="checkbox">
+                        </div>
+                        <div class="number">
+                          <span class="m-auto">2</span>
+                          <input name="rooms_quantity" value="2" type="checkbox">
+                        </div>
+                        <div class="number">
+                          <span class="m-auto">3</span>
+                          <input name="rooms_quantity" value="3" type="checkbox">
+                        </div>
+                        <div class="number">
+                          <span class="m-auto">4</span>
+                          <input name="rooms_quantity" value="4" type="checkbox">
+                        </div>
+                        <div class="number">
+                          <span class="m-auto">5+</span>
+                          <input name="rooms_quantity" value="5" type="checkbox">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search-in">
+                      <label for="number-checkbox-container" class="label-search">საძინებელი</label>
+                      <div id="bedrooms" class="number-checkbox-container ">
+
+                        <div class="number">
+                          <span class="m-auto">1</span>
+                          <input name="bedrooms_quentity" value="1" type="checkbox">
+                        </div>
+                        <div class="number">
+                          <span class="m-auto">2</span>
+                          <input name="bedrooms_quentity" value="2" type="checkbox">
+                        </div>
+                        <div class="number">
+                          <span class="m-auto">3+</span>
+                          <input name="bedrooms_quentity" value="3" type="checkbox">
+                        </div>
+                      </div>
+                    </div>
+               
+                  </div>
+                  <div class="col-md-7">
+
+                    <div id="conditions_div" class="select-1 select-sumo condition-div">
+                      <div class="padding-select">
+                        <select id="cond_sel" name="condition" multiple title="მდგომარეობა" class="selectpicker">
+                          <% conditions.forEach(item => { %>
+                            <option value="<%=item.id%>"><%=item.name%></option>
+                          <% }) %>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div id="projects_div" class="select-1 select-sumo">
+                      <div class="padding-select">
+                        <select id="proj_sel" name="project" multiple title="პროექტი" class="selectpicker">
+                          <% projects.forEach(item => { %>
+                            <option value="<%=item.id%>"><%=item.name%></option>
+                          <% }) %>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div id="exchanges_div" class="select-1 select-sumo">
+                      <div class="padding-select">
+                        <select id="exch_sel" name="exchange" multiple title="შესაძლებელია გაცვლა" class="selectpicker">
+                          <% for (const key in exchange) { %>
+                            <option value="<%=key%>"><%=exchange[key]%></option>
+                          <% } %>
+                        </select>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+
+                <div class="cls"></div>
+                <button type="reset" class="search-for-state btn btn-success custom-btn">
+                  ძიება
+                </button>
+                <button type="reset" class="clear-for-state btn btn-danger custom-btn">
+                  გასუფთავება
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2">
+          <label for="" class="label-search">ჩაწერეთ</label>
+          <input type="text" name="any_word" class="form-control" placeholder="სიტყვა, ID, საკ.კოდი">
+        </div>
+    
+      <div class="col-md-1">
+          <button id="search_for_state" type="reset" class="btn btn-success custom-btn-main btn-search">
+            ძიება
+            <i class="m-menu__link-icon fa fa-search"></i>
+          </button>
+        </div>
+      <div class="col-md-1">
+        <button id="clear_btn" type="reset" class="btn btn-danger custom-btn-main btn-reset">
+          გასუფთავება   <i class="m-menu__link-icon fa fa-ban"></i>
+        </button>
+      </div>
+    </div>
+
+
+  </div>
+</div>

@@ -1,0 +1,43 @@
+<div id="search_area" class="m-portlet m-portlet--tab m-portlet-search contacts-search">
+  <div class="row">
+    <div class="col-md-2">
+      <input name="org_name" id="org_name" type="text" class="form-control">
+    </div>
+    <div class="col-md-2">
+      <button id="search_btn" class="btn btn-success btn-users">
+        ძებნა
+        <i class="m-menu__link-icon flaticon-search"></i>
+      </button>
+    </div>
+    <div class="col-md-2">
+      <select id="contact_type" name="contact_type" name="role" class="selectpicker bootstrap-select form-control m-bootstrap-select">
+        <option>იურიდიული სტატუსი</option>
+        <option reference="physical_person" value="1">ფიზიკური პირი</option>
+        <option reference="legal_person" value="2">იურიდიული პირი</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+      <select id="contact_type" name="contact_type" name="role" class="selectpicker bootstrap-select form-control m-bootstrap-select">
+        <option>კონტაქტის ტიპი</option>
+        <option reference="physical_person" value="1">მესაკუთრე</option>
+        <option reference="legal_person" value="2">მყიდველი</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+      <button id="clear_btn" class="btn btn-danger btn-users">
+        გასუფთავება
+        <i class="m-menu__link-icon flaticon-cancel"></i>
+      </button>
+    </div>
+    <div class="button-primary col-md-2 text-right">
+      <a href="/contacts/create" class="btn btn-primary btn-users">
+        კონტაქტის დამატება
+        <i class="m-menu__link-icon flaticon-add"></i>
+      </a>
+    </div>
+  </div>
+  <!-- <div class="row clients-row">
+
+    
+  </div> -->
+</div>

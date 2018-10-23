@@ -1,0 +1,45 @@
+<div class="m-portlet m-portlet--tab m-portlet-search">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="pagination-wrapper">
+          <div id="pagination" class="pagination">
+            <% if (searched) { %>
+              <a id="prev" class="prev page-numbers" href="#" to="/<%= from %>/search?page=<%= current - 1 %>&name=<%= name %>">
+                <i class="fa fa-chevron-left"></i>
+              </a>
+            <% } else { %>
+              <a id="prev" class="prev page-numbers" href="/<%= from %>?page=<%= current - 1 %>">
+                <i class="fa fa-chevron-left"></i>
+              </a>
+            <% } %>
+            <% for (let j = 1; j <= pages; j++) { %>
+              <% if (searched) { %>
+                <% if (current === j) { %> 
+                  <span aria-current="page" class="page-numbers current"><%= j %></span> 
+                <% } else { %>
+                  <a class="page-numbers" href="#" to="/<%= from %>/search?page=<%= j %>&name=<%= name %>"><%= j %></a>
+                <% } %>
+              <% } else { %>
+                <% if (current === j) { %> 
+                  <span aria-current="page" class="page-numbers current"><%= j %></span> 
+                <% } else { %>
+                  <a class="page-numbers" href="/<%= from %>?page=<%= j %>"><%= j %></a>
+                <% } %>
+              <% } %>
+            <% } %>
+            <% if (searched) { %>
+              <a id="next" class="prev page-numbers" href="#" to="/<%= from %>/search?page=<%= current + 1 %>&name=<%= name %>">
+                <i class="fa fa-chevron-right"></i>
+              </a>
+            <% } else { %>
+              <a id="next" class="prev page-numbers" href="/<%= from %>?page=<%= current + 1 %>">
+                <i class="fa fa-chevron-right"></i>
+              </a>
+            <% } %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

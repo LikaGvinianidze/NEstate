@@ -1,0 +1,57 @@
+<% let i = 1; states.forEach(state => { %>
+  <% let currency = ''; let area = '' %>
+  <%  if (state.currency.name === 'lari') currency = '₾'; %>
+  <%  if (state.currency.name === 'dollar') currency = '$'; %>
+  <%  if (state.currency.name === 'euro') currency = '€'; %>
+  <%  if (state.area_type.name === 'm2') area = 'მ²'; %>
+  <%  if (state.area_type.name === 'ha') area = 'ჰა'; %>
+  <%  if (state.area_type.name === '1/100') area = '1/100'; %>
+  <tr>
+    <td>
+      <label class="m-checkbox det-checkbox">
+        <input type="checkbox" class="links">
+        <span></span>
+      </label>
+    </td>
+    <td class="states-img">
+      <img src="../img/photos/<%=i%>.jpg" alt="">
+    </td>
+    <td data-title="განცხადების ID"><%= state.slug %></td>
+    <td data-title="მისამართი"><%= state.municipality.name %> <%= state.village ? ', ' + state.village.name : '' %><%= state.street ? ', ' + state.street : '' %></td>
+    <td data-title="ფართი და ღირებულება">
+      <%= state.area + ' ' + area %> <br>
+      <%=  state.square_price + ' ' + currency %> <br>
+      <%= state.total_price + ' ' + currency %>
+    </td>
+    <% if (land) { %>
+      <td isfor="<%=state.status%>" data-title="დანიშნულება">
+        
+      </td>
+    <% } else { %>
+      <td data-title="სართულები/ოთახები">
+        სართული: <%= state.floor %> (<%= state.floors_quantity %>) <br>
+        ოთახები: <%= state.bedrooms_quantity %>(<%= state.rooms_quantity %>)
+      </td>
+    <% } %>
+    <td>
+      <% const day = new Date(state.created_at).getDay();  %>
+      <% const month = new Date(state.created_at).getMonth();  %>
+      <% const year = new Date(state.created_at).getFullYear();  %>
+      <%= day + '-' + month + '-' + year %>
+    </td>
+    <td style="width:1%" rowspan="1" colspan="1">
+      <span style="overflow: visible; width: 132px;">
+        <a href="/states/<%= state.id %>" class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" title="Edit details">
+          <i class="la la-edit"></i>
+        </a>
+        <a href="#" id="del" uid="<%= state.id %>" data-target="<%=i%>" class="del m-portlet__nav-link btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill" title="Delete">
+          <i class="la la-trash"></i>
+        </a>
+        <a href="/states/card/<%= state.id %>" class="card m-portlet__nav-link btn m-btn m-btn--hover-warning m-btn--icon m-btn--icon-only m-btn--pill"
+          title="Card">
+          <i class="la la-exclamation-circle"></i>
+        </a>
+      </span>
+    </td>
+  </tr>
+<% i++; }) %>

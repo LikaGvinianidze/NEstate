@@ -1,0 +1,70 @@
+<div id="m_ver_menu" class="m-aside-menu  m-aside-menu--skin-dark m-aside-menu--submenu-skin-dark m-aside-menu--dropdown "
+  data-menu-vertical="true" data-menu-dropdown="true" data-menu-scrollable="true" data-menu-dropdown-timeout="500">
+  <ul class="m-menu__nav  m-menu__nav--dropdown-submenu-arrow ">
+    <% if (user.role.name === 'admin') { %>
+    <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true">
+      <a href="/organizations" class="m-menu__link ">
+        <span class="m-menu__item-here"></span>
+        <i class="m-menu__link-icon fa fa-institution"></i>
+        <span class="m-menu__link-text">
+          ორგანიზაციები
+        </span>
+      </a>
+    </li>
+    <% } %>
+    <% if (user.role.name === 'admin' || user.role.name === 'manager') { %>
+    <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover">
+      <a href="/users" class="m-menu__link m-menu__toggle">
+        <span class="m-menu__item-here"></span>
+        <i class="m-menu__link-icon fa fa-users"></i>
+        <span class="m-menu__link-title">
+          <span class="m-menu__link-wrap">
+            <span class="m-menu__link-text">
+              მომხმარებლები
+            </span>
+
+          </span>
+        </span>
+        <i class="m-menu__ver-arrow la la-angle-right"></i>
+      </a>
+
+    </li>
+    <% } %>
+    <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover" data-redirect="true">
+      <a href="/states" class="m-menu__link m-menu__toggle">
+        <span class="m-menu__item-here"></span>
+        <i class="m-menu__link-icon fa fa-envelope"></i>
+        <span class="m-menu__link-text">
+          განცხადებები
+        </span>
+        <i class="m-menu__ver-arrow la la-angle-right"></i>
+      </a>
+
+    </li>
+    <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover" data-redirect="true">
+      <a href="/contacts" class="m-menu__link m-menu__toggle">
+        <span class="m-menu__item-here"></span>
+        <span class="m-menu__item-here"></span>
+        <i class="m-menu__link-icon fa fa-street-view"></i>
+        <span class="m-menu__link-text">
+          კონტაქტები
+        </span>
+        <i class="m-menu__ver-arrow la la-angle-right"></i>
+      </a>
+
+    </li>
+    <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover" data-redirect="true">
+      <a href="#" class="m-menu__link m-menu__toggle">
+        <span class="m-menu__item-here"></span>
+        <i class="m-menu__link-icon fa fa-bar-chart-o"></i>
+        <span class="m-menu__link-text">
+          რეპორტები
+        </span>
+        <i class="m-menu__ver-arrow la la-angle-right"></i>
+      </a>
+
+    </li>
+  </ul>
+</div>
+<!-- END: Aside Menu -->
+</div>

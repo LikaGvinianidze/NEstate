@@ -1,0 +1,357 @@
+<div class="row">
+    <div class="col-lg-12">
+      <label for="add_info" class="title-features">
+          კეთილმოწყობა
+      </label>
+    </div>
+  </div>
+  <div class="container">
+  <div class="row">
+    <div class="col-lg-4">
+      <div class="container-checkboxs">
+        <div class="some checkbox-in">
+          <label class="m-checkbox">
+            <input
+              <% if (state.balcony_area) { %> checked <% } %>
+              class="check feature"
+              name="balcony"
+              type="checkbox" />
+            <span></span>
+            <label class="col-form-label">აივანი</label>
+          </label>
+          <div <% if (!state.balcony_area) { %> style="display: none" <% } %> class="input">
+            <input type="number" name="balcony_area" placeholder="ფართი (მ²)" value="<%=state.balcony_area%>" class="form-control m-input">
+          </div>
+        </div>
+
+      <div class="checkbox-in some">
+        <label class="m-checkbox">
+          <input
+            <% if (state.veranda_area) { %> checked <% } %>
+            class="check feature"
+            name="veranda"
+            type="checkbox" />
+          <span></span>
+          <label class="col-form-label">ვერანდა</label>   
+        </label>
+        <div <% if (!state.verada_area) { %> style="display: none" <% } %> class="input">
+          <input type="number" name="veranda_area" placeholder="ფართი (მ²)" value="<%=state.veranda_area%>" class="form-control m-input">
+        </div>
+      </div>
+
+      <div class="checkbox-in some">
+        <label class="m-checkbox">
+          <input
+            <% if (state.loggie_area) { %> checked <% } %>
+            class="check feature"
+            name="loggie"
+            type="checkbox" />
+          <span></span>
+          <label class="col-form-label">ლოჯი</label>
+          </label>
+          <div <% if (!state.balcony_area) { %> style="display: none" <% } %> class="input">
+            <input type="number" name="loggie_area" placeholder="ფართი (მ²)" value="<%=state.loggie_area%>" class="form-control m-input">
+          </div>
+      </div>
+  
+      <div class="checkbox-in">
+        <label class="m-checkbox">
+          <label class="col-form-label">ავეჯი</label>
+          <input
+            <% if (features.furniture) { %> checked <% } %>
+            name="furniture"
+            class="feature"
+            type="checkbox" />
+          <span></span>
+        </label>
+      </div>
+
+      <div class="checkbox-in some">
+          <label class="m-checkbox">
+            <label class="col-form-label">სათავსო</label>
+            <input
+              <% if (features.storeroom) { %> checked <% } %>
+              class="select feature"
+              id="store"
+              name="storeroom"
+              type="checkbox" /> 
+            <span></span>
+          </label>
+          <div <% if (!features.storeroom) { %> style="display: none" <% } %> class="sel-features">
+            <select name="store" id="store_option" title="აირჩიეთ ერთერთი" class="selectpicker bootstrap-select form-control m-bootstrap-select">
+              <% for (const key in store) { %>
+                <option
+                  <% if (features[key]) { %> selected <% } %>
+                  value="<%=key%>">
+                  <%=store[key]%></option>
+              <% } %>
+            </select>
+          </div>
+      </div>
+
+      <div class="checkbox-in">
+        <label class="m-checkbox">
+          <label class="col-form-label">სამგზავრო ლიფტი</label> 
+          <input
+          <% if (features.pass_elevator) { %> checked <% } %>
+          name="pass_elevator"
+          class="feature"
+          type="checkbox" />
+          <span></span>
+        </label>
+      </div>
+  
+      <div class="checkbox-in">
+          <label class="m-checkbox">
+            <label class="col-form-label">სატვირთო ლიფტი</label>
+            <input
+              <% if (features.serv_elevator) { %> checked <% } %>
+              name="serv_elevator"
+              class="feature"
+              type="checkbox" />
+            <span></span>
+          </label>
+      </div>
+
+      <div class="checkbox-in some">
+          <label class="m-checkbox">
+            <label class="col-form-label">პარკინგი</label>
+            <input
+              <% if (features.station) { %> checked <% } %>
+              class="select feature"
+              id="parking"
+              name="station"
+              type="checkbox" />
+            <span></span>
+    
+          </label>
+          <div <% if (!features.station) { %> style="display: none" <% } %> class="sel-features">
+            <select name="parking" id="parking_option" title="აირჩიეთ ერთერთი" class="selectpicker bootstrap-select form-control m-bootstrap-select">
+              <% for (const key in parking) { %>
+                <option
+                  <% if (features[key]) { %> selected <% } %>
+                  value="<%=key%>">
+                  <%=parking[key]%></option>
+              <% } %>
+            </select>
+          </div>
+      </div>
+
+      <div class="checkbox-in">
+        <label class="col-form-label">სველი წერტილი</label>
+      
+        <div class="feature-input">
+          <input
+            <% if (state.restrooms_quantity === 'one') { %> checked <% } %>
+            name="restrooms_quantity"
+            class="feature"
+            value="one"
+            type="radio"
+            id="radio1">
+          <label for="radio1">1</label>
+        </div>
+
+        <div class="feature-input">
+          <input
+            <% if (state.restrooms_quantity === 'two') { %> checked <% } %>
+            name="restrooms_quantity"
+            class="feature"
+            value="two"
+            type="radio"
+            id="radio2">
+          <label for="radio2">2</label>
+        </div>
+
+        <div class="feature-input">
+          <input
+            <% if (state.restrooms_quantity === 'morethree') { %> checked <% } %>
+            name="restrooms_quantity"
+            class="feature"
+            value="morethree"
+            type="radio"
+            id="radio3">
+          <label for="radio3">3+</label>
+        </div>
+
+        <div class="feature-input">
+          <input
+            <% if (state.restrooms_quantity === 'common') { %> checked <% } %>
+            name="restrooms_quantity"
+            class="feature"
+            value="common"
+            type="radio"
+            id="radio4">
+          <label for="radio4">საერთო</label>
+        </div>  
+      </div>
+    </div>
+
+  </div>
+  <div  class="col-lg-5">
+    <div class="checkbox-in">
+      <label class="m-checkbox">
+        <label class="col-form-label">ბუნებრივი აირი</label>
+        <input
+          <% if (features.gas) { %> checked <% } %>
+          name="gas"
+          class="feature"
+          type="checkbox" />
+        <span></span>
+      </label>
+    </div>
+
+    <div class="checkbox-in some">
+      <label class="m-checkbox">
+        <label class="col-form-label">გათბობა</label> 
+        <input
+          <% if (features.heat) { %> checked <% } %>
+          class="select feature"
+          id="heating"
+          name="heat"
+          type="checkbox" />
+        <span></span>
+      </label>
+      <div <% if (!features.heat) { %> style="display: none" <% } %> class="sel-features">
+        <select name="heating" id="heating_option" title="აირჩიეთ ერთერთი" class="selectpicker bootstrap-select form-control m-bootstrap-select">
+          <% for (const key in heating) { %>
+            <option
+              <% if (features[key]) { %> selected <% } %>
+              value="<%=key%>">
+              <%=heating[key]%></option>
+          <% } %>
+        </select>
+      </div>
+    </div>
+
+    <div class="checkbox-in">
+      <label class="m-checkbox">
+        <label class="col-form-label">ბუხარი</label>
+        <input
+          <% if (features.fireplace) { %> checked <% } %>
+          name="fireplace"
+          class="feature"
+          type="checkbox" />
+        <span></span>
+      </label>
+    </div>
+
+    <div class="checkbox-in">
+      <label class="m-checkbox some">
+        <label class="col-form-label">ცხელი წყალი</label>
+        <input
+          <% if (features.hot_water) { %> checked <% } %>
+          class="select feature"
+          id="hotWater"
+          name="hot_water"
+          type="checkbox" />
+        <span></span>
+      </label>
+
+      <div <% if (!features.hot_water) { %> style="display: none" <% } %> class="sel-features">
+        <select name="hotWater" id="hotWater_option" title="აირჩიეთ ერთერთი" class="selectpicker bootstrap-select form-control m-bootstrap-select">
+          <% for (const key in hotWater) { %>
+            <option
+              <% if (features[key]) { %> selected <% } %>
+              value="<%=key%>">
+              <%=hotWater[key]%></option>
+          <% } %>
+        </select>
+      </div>
+    </div>
+
+    <div class="checkbox-in">
+      <label class="m-checkbox">
+        <label class="col-form-label">კონდიციონერი</label>
+        <input
+          <% if (features.air_conditioner) { %> checked <% } %>
+          name="air_conditioner"
+          class="feature"
+          type="checkbox" />
+        <span></span></label>
+    </div>
+
+    <div class="checkbox-in">
+      <label class="m-checkbox">
+        <label class="col-form-label">ტელევიზორი</label>
+        <input
+          <% if (features.tv) { %> checked <% } %>
+          name="tv"
+          class="feature"
+          type="checkbox" />
+        <span></span>
+      </label>
+    </div>
+
+    <div class="checkox-in">
+      <label class="m-checkbox">
+        <label class="col-form-label">სარეცხი მანქანა</label>
+        <input
+          <% if (features.washin_machine) { %> checked <% } %>
+          name="washin_machine"
+          class="feature"
+          type="checkbox" />
+        <span></span>
+      </label>
+    </div>
+
+    <div class="checkbox-in">
+      <label class="m-checkbox">
+        <label class="col-form-label">ტელეფონი</label>
+        <input
+          <% if (features.telephone) { %> checked <% } %>
+          name="telephone"
+          class="feature"
+          type="checkbox" />
+        <span></span>
+      </label>
+    </div>
+
+    <div class="checkbox-in">
+      <label class="m-checkbox">
+        <label class="col-form-label">ინტერნეტი</label>
+        <input
+          <% if (features.internet) { %> checked <% } %>
+          name="internet"
+          class="feature"
+          type="checkbox" />
+        <span></span>
+      </label>
+    </div>
+  </div>
+</div>
+  </div>
+  <div class="form-group m-form__group row">
+      <!--<div class="form-group m-form__group row">-->
+        <label for="" class="col-lg-2 col-form-label">
+          მდგომარეობა
+        </label>
+        <div class="col-lg-2">
+          <select name="condition" title="აირჩიეთ ერთერთი" class="selectpicker searchTerm bootstrap-select form-control m-bootstrap-select m-select2 states-select">
+            <% conditions.forEach(con => { %>
+              <option
+                <% if (state.condition && con.id === state.condition.id) { %> selected <% } %>
+                value="<%=con.id%>">
+                <%=con.name%>
+              </option>
+              <% }) %>
+          </select>
+        </div>
+        </div>
+        <div class="form-group m-form__group row">
+        <label class="col-lg-2 col-form-label">
+          ჭერის სიმაღლე
+        </label>
+        <div class="col-lg-2 number-checkbox-container">
+          <input type="number" name="ceiling_height" value="<%=state.ceiling_height%>" class="form-control m-input">
+        </div>
+        </div>
+      <!--</div>-->
+
+
+  <script>
+    $('.number').click(function () {
+      if ($(this).is(':checked'))
+      $(this).toggleClass("active");
+    });
+    $('.selectpicker').selectpicker();
+  </script>
